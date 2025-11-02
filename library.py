@@ -52,3 +52,4 @@ if choice == "3":
 if choice == "4":
     print("Goodbye!")
     sys.exit()
+#   PROBLEMS: Instance variables available books and borrowed books are not defined.
