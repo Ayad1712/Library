@@ -8,22 +8,22 @@ class LibraryAccount: #main class
         borrowed_books = [""] #default is empty
         self.available_books = available_books
         available_books = ["The Sorcerer's Stone", "The Meltdown", "Moon Rising", "The Secret Garden", "Call of The Wild", "The Desert Quest"]
-    def show_available_books(self):
+    def show_available_books(self): #shows avaialable books using "self.available_books"
         print(f"The available books are {self.available_books}")
-    def borrow_book(self, book_title):
+    def borrow_book(self, book_title): #Allows user to borrow a book
         self.book_title = book_title
         book_title = input("Type the book you want:")
-        if book_title in available_books:
-            borrowed_books.append(book_title)
-            available_books.remove(book_title)
+        if book_title in self.available_books:
+            self.borrowed_books.append(book_title) #add chosen book to user's borrowed books
+            self.available_books.remove(book_title) #removes chosen book from available books and makes it used
             print("The book has been borrowed.")
         else:
             print("The book was already borrowed or does not exist.")
-    def return_book(self, book_title):
+    def return_book(self, book_title): #returns user's chosen book
         book_title = input("Which book do you want to return?:")
-        if book_title in borrowed_books:
-            borrowed_books.remove(book_title)
-            available_books.append(book_title)
+        if book_title in self.borrowed_books:
+            self.borrowed_books.remove(book_title) #removes borrowed book from the list
+            self.available_books.append(book_title) #adds the book back to the list, making it available again
             print(f"The book {book_title} has been returned.")
         else:
             print("The book was never borrowed.")
@@ -39,17 +39,17 @@ class Book:
         pass
 
 AccountSession = LibraryAccount("Alice","",["The Sorcerer's Stone", "The Meltdown", "Moon Rising", "The Secret Garden", "Call of The Wild", "The Desert Quest"])
-
 print("Library Menu:\n 1. Show Available Books \n 2. Borrow a Book \n 3. Return a Book \n 4. Exit")
 choice = input("Choose your option: ")
 if choice == "1":
     AccountSession.show_available_books()
-    time.sleep(1)
 if choice == "2":
-    AccountSession.borrow_books()
+    AccountSession.borrow_book()
 if choice == "3":
     AccountSession.return_book()
 if choice == "4":
     print("Goodbye!")
     sys.exit()
-#   PROBLEMS: Instance variables available books and borrowed books are not defined.
+
+
+
